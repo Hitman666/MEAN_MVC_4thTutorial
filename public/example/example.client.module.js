@@ -1,1 +1,1 @@
-angular.module('example', []);
+angular.module('example', ['ngRoute', 'users']);
