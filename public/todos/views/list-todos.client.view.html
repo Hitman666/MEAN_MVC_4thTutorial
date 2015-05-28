@@ -1,0 +1,17 @@
+<section data-ng-controller="TodosController" data-nginit="
+	find()">
+	<h1>Todos</h1>
+	<ul>
+		<li data-ng-repeat="todo in todos">
+			<a data-ng-href="#!/todos/{{todo._id}}" data-ngbind="todo.title"></a>
+			<br>
+			<small data-ng-bind="todo.created | date:'medium'"></small>
+			<small>/</small>
+			<small data-ng-bind="todo.creator.name"></small>
+			<p data-ng-bind="todo.comment"></p>
+		</li>
+	</ul>
+	<div data-ng-hide="!todos || todos.length">
+		No todos yet, why don't you <a href="/#!/todos/create">create one</a>?
+	</div>
+</section>

@@ -1,0 +1,24 @@
+<section data-ng-controller="TodosController">
+	<h1>New Todo</h1>
+	<form data-ng-submit="create()" novalidate>
+		<div>
+			<label for="title">Title</label>
+			<div>
+				<input type="text" data-ng-model="title" id="title"
+				placeholder="Title" required>
+			</div>
+		</div>
+		<div>
+			<label for="comment">Comment</label>
+			<div>
+				<textarea data-ng-model="comment" id="comment" cols="30" rows="10" placeholder="Comment"></textarea>
+			</div>
+		</div>
+		<div>
+			<input type="submit">
+		</div>
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+</section>

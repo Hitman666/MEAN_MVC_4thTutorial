@@ -1,4 +1,14 @@
 <section ng-controller="ExampleController">
-	<input type="text" id="text1" ng-model="name">
-	<input type="text" id="text2" ng-model="name">
-</section>
+	<div data-ng-show="!authentication.user">
+		<a href="/register">Register</a>
+		<a href="/login">Login</a>
+	</div>
+	<div data-ng-show="authentication.user">
+		<h1>Hello <span data-ng-bind="authentication.user.name"></span></h1>
+			<a href="/logout">Logout</a>
+			<ul>
+				<li><a href="/#!/todos">List Todos</a></li>
+				<li><a href="/#!/todos/create">Create Todo</a></li>
+			</ul>
+		</div>
+	</section>

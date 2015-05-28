@@ -4,14 +4,6 @@
 	<title><%= title %></title>
 </head>
 <body ng-app="mean">
-	<% if (user) { %>
-		<h2>Hello <%=user%> </h2>
-		<a href="/logout">Sign out</a>
-	<% } else { %>
-		<a href="/register">Register</a>
-		<a href="/login">Login</a>
-	<% } %>
-
 	<section ng-view></section>
 
 	<script type="text/javascript">
@@ -20,6 +12,12 @@
 	
 	<script type="text/javascript" src="/js/angular/angular.js"></script>
 	<script type="text/javascript" src="/js/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="/js/angular-resource/angular-resource.min.js"></script>
+
+	<script type="text/javascript" src="/todos/todos.client.module.js"></script>
+	<script type="text/javascript" src="/todos/controllers/todos.client.controller.js"></script>
+	<script type="text/javascript" src="/todos/services/todos.client.service.js"></script>
+	<script type="text/javascript" src="/todos/config/todos.client.routes.js"></script>
 	
 	<script type="text/javascript" src="/useri/users.client.module.js"></script>
 	<script type="text/javascript" src="/useri/services/authentication.client.service.js"></script>

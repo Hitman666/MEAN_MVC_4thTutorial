@@ -12,8 +12,7 @@ var getErrorMessage = function(err) {
 			default:
 				message = 'Something went wrong';
 		}
-	}
-	else {
+	} else {
 		for (var errName in err.errors) {
 			if (err.errors[errName].message)
 				message = err.errors[errName].message;
@@ -29,8 +28,7 @@ exports.renderLogin = function(req, res, next) {
 			title: 'Log-in Form',
 			messages: req.flash('error') || req.flash('info')
 		});
-	}
-	else {
+	} else {
 		return res.redirect('/');
 	}
 };
@@ -41,8 +39,7 @@ exports.renderRegister = function(req, res, next) {
 			title: 'Register Form',
 			messages: req.flash('error')
 		});
-	}
-	else {
+	} else {
 		return res.redirect('/');
 	}
 };
@@ -57,17 +54,16 @@ exports.register = function(req, res, next) {
 				var message = getErrorMessage(err);
 				req.flash('error', message);
 				return res.redirect('/register');
-			}	
+			}
 
 			req.login(user, function(err) {
-				if (err) 
+				if (err)
 					return next(err);
-				
+
 				return res.redirect('/');
 			});
 		});
-	}
-	else {
+	} else {
 		return res.redirect('/');
 	}
 };
@@ -85,8 +81,7 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
 		function(err, user) {
 			if (err) {
 				return done(err);
-			}
-			else {
+			} else {
 				if (!user) {
 					var possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
 					User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
@@ -103,8 +98,7 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
 							return done(err, user);
 						});
 					});
-				}
-				else {
+				} else {
 					return done(err, user);
 				}
 			}
@@ -114,13 +108,12 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
 
 
 
-exports.create = function(req, res, next) {	
+exports.create = function(req, res, next) {
 	var user = new User(req.body);
 	user.save(function(err) {
 		if (err) {
 			return next(err);
-		}
-		else {
+		} else {
 			res.json(user);
 		}
 	});
@@ -130,8 +123,7 @@ exports.list = function(req, res, next) {
 	User.find({}, function(err, users) {
 		if (err) {
 			return next(err);
-		}
-		else {
+		} else {
 			res.json(users);
 		}
 	});
@@ -144,12 +136,11 @@ exports.read = function(req, res) {
 exports.userByID = function(req, res, next, id) {
 	User.findOne({
 			_id: id
-		}, 
+		},
 		function(err, user) {
 			if (err) {
 				return next(err);
-			}
-			else {
+			} else {
 				req.user = user;
 				next();
 			}
@@ -161,8 +152,7 @@ exports.update = function(req, res, next) {
 	User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
 		if (err) {
 			return next(err);
-		}
-		else {
+		} else {
 			res.json(user);
 		}
 	});
@@ -172,9 +162,17 @@ exports.delete = function(req, res, next) {
 	req.user.remove(function(err) {
 		if (err) {
 			return next(err);
-		}
-		else {
+		} else {
 			res.json(req.user);
 		}
 	})
+};
+
+exports.requiresLogin = function(req, res, next) {
+	if (!req.isAuthenticated()) {
+		return res.status(401).send({
+			message: 'User is not logged in'
+		});
+	}
+	next();
 };
