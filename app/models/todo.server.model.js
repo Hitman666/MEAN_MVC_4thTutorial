@@ -20,6 +20,10 @@ var TodoSchema = new Schema({
 	creator: {
 		type: Schema.ObjectId,
 		ref: 'User'
+	},
+	completed: {
+		type: Boolean,
+		default: false
 	}
 });
 mongoose.model('Todo', TodoSchema);

@@ -58,6 +58,8 @@ exports.update = function(req, res) {
 	var todo = req.todo;
 	todo.title = req.body.title;
 	todo.comment = req.body.comment;
+	todo.completed = req.body.completed;
+	
 	todo.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -83,7 +85,7 @@ exports.delete = function(req, res) {
 };
 
 exports.hasAuthorization = function(req, res, next) {
-	if (req.article.creator.id !== req.user.id) {
+	if (req.todo.creator.id !== req.user.id) {
 		return res.status(403).send({
 			message: 'User is not authorized'
 		});

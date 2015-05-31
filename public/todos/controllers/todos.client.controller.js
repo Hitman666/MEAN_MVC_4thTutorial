@@ -20,7 +20,8 @@ angular.module('todos').controller('TodosController', ['$scope', '$routeParams',
 		};
 
 		$scope.findOne = function() {
-			$scope.todo = todos.get({
+			console.log("called");
+			$scope.todo = Todos.get({
 				todoId: $routeParams.todoId
 			});
 		};

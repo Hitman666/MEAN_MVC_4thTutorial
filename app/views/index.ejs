@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org">
 <head>
-	<title><%= title %></title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Nikola Brežnjak">
+
+    <title>MEAN TODO</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/mean.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="mean">
-	<section ng-view></section>
+	<section ng-view class="main-section"></section>
 
 	<script type="text/javascript">
 		window.user = <%- user || 'null' %>;
 	</script>
 	
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/mean.js"></script>
+
 	<script type="text/javascript" src="/js/angular/angular.js"></script>
 	<script type="text/javascript" src="/js/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="/js/angular-resource/angular-resource.min.js"></script>
@@ -26,6 +44,6 @@
 	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
 	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
 
-	<script type="text/javascript" src="/application.js"></script>	
+	<script type="text/javascript" src="/application.js"></script>
 </body>
 </html>

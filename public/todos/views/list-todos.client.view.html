@@ -1,9 +1,8 @@
-<section data-ng-controller="TodosController" data-nginit="
-	find()">
+<!--<section data-ng-controller="TodosController" data-ng-init="find()">
 	<h1>Todos</h1>
 	<ul>
 		<li data-ng-repeat="todo in todos">
-			<a data-ng-href="#!/todos/{{todo._id}}" data-ngbind="todo.title"></a>
+			<a data-ng-href="#!/todos/{{todo._id}}" data-ng-bind="todo.title"></a>
 			<br>
 			<small data-ng-bind="todo.created | date:'medium'"></small>
 			<small>/</small>
@@ -14,4 +13,68 @@
 	<div data-ng-hide="!todos || todos.length">
 		No todos yet, why don't you <a href="/#!/todos/create">create one</a>?
 	</div>
-</section>
+</section>-->
+<div data-ng-controller="TodosController">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">MEAN TODO</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+
+					<li class="page-scroll" data-ng-show="!authentication.user">
+                        <a href="/login">Login</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="!authentication.user">
+                        <a href="/register">Register</a>
+                    </li>
+                    
+                    <!--<li class="page-scroll">
+                        <a href="https://github.com/Hitman666/MEAN_MVC_4thTutorial">Fork on Github</a>
+                    </li>-->
+
+                    <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/#!/todos/create">CREATE</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/logout">Hello <span data-ng-bind="authentication.user.name" data-ng-show="authentication.user"></span>, Logout?</a>
+                    </li>                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <section data-ng-init="find()">
+		<div class="container">
+			<h1>Todos</h1>
+            Show completed: <input type="checkbox" ng-model="showcompleted" ng-init="showcompleted=true">
+			<ul>
+				<li data-ng-repeat="todo in todos" ng-if="showcompleted && todo.completed || !todo.completed">
+					<a data-ng-href="#!/todos/{{todo._id}}" data-ng-bind="todo.title" ng-class="todo.completed?'completed':''"></a>
+					(<small data-ng-bind="todo.created | date:'short'"></small>)
+					<br>					
+					
+					<small data-ng-bind="todo.comment" class="comment"></small>
+				</li>
+			</ul>
+			<div data-ng-hide="!todos || todos.length">
+				No todos yet, why don't you <a href="/#!/todos/create">create one</a>?
+			</div>
+		</div>
+	</section>
+</div>
