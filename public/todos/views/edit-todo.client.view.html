@@ -1,27 +1,3 @@
-<!--<section data-ng-controller="TodosController" data-ng-init="findOne()">
-	<h1>Edit Todo</h1>
-	<form data-ng-submit="update()" novalidate>
-		<div>
-			<label for="title">Title</label>
-			<div>
-				<input type="text" data-ng-model="todo.title" id="title"
-				placeholder="Title" required>
-			</div>
-		</div>
-		<div>
-			<label for="comment">Comment</label>
-			<div>
-				<textarea data-ng-model="todo.comment" id="comment" cols="30" rows="10" placeholder="Comment"></textarea>
-			</div>
-		</div>
-		<div>
-			<input type="submit" value="Update">
-		</div>
-		<div data-ng-show="error">
-			<strong data-ng-bind="error"></strong>
-		</div>
-	</form>
-</section>-->
 <div data-ng-controller="TodosController">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -49,10 +25,6 @@
                     <li class="page-scroll" data-ng-show="!authentication.user">
                         <a href="/register">Register</a>
                     </li>
-                    
-                    <!--<li class="page-scroll">
-                        <a href="https://github.com/Hitman666/MEAN_MVC_4thTutorial">Fork on Github</a>
-                    </li>-->
 
                     <li class="page-scroll" data-ng-show="authentication.user">
                         <a href="/#!/todos/create">CREATE</a>
